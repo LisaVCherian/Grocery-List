@@ -265,13 +265,17 @@ main {
   transition: var(--transition);
 }
 .edit-btn,
-.delete-btn {
+.delete-btn,
+.inc-btn {
   background: transparent;
   border-color: transparent;
   cursor: pointer;
   font-size: 0.7rem;
-  margin: 0 0.15rem;
+  margin: 0 0.35rem;
   transition: var(--transition);
+}
+.inc-btn {
+  color: var(--clr-primary-5);
 }
 .edit-btn {
   color: var(--clr-green-light);

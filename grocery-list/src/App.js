@@ -9,6 +9,7 @@ function App() {
   const [editing, setEditing] = useState(false);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({ show: false, msg: '', type: '' });
+  const [quantity, setQuantity] = useState(1);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +30,7 @@ function App() {
       showAlert(true, 'Item updated', 'success');
     }
     else {
-      const newItem = { id: new Date().getTime().toString(), title: name }
+      const newItem = { id: new Date().getTime().toString(), title: name, quanty: quantity }
       setList([...list, newItem]);
       showAlert(true, 'Item added to the list', 'success')
       setName('');
@@ -58,6 +59,13 @@ function App() {
     setName(x.title);
   }
 
+  const quant = (id) => {
+    let x = list.find((item) => item.id === id);
+    setEditing(true);
+    setEditID(id);
+    setQuantity(x.quanty += 1);
+  }
+
   return (
     <section className="section-center">
       <form className="grocery-form" onSubmit={handleSubmit}>
@@ -78,7 +86,7 @@ function App() {
 
       {list.length > 0 && (
         <div className="grocery-container">
-          <List items={list} removeItem={removeItem} editItem={editItem} />
+          <List items={list} removeItem={removeItem} editItem={editItem} quant={quant} />
           <button className="clear-btn" onClick={clearList} >Clear Items</button>
         </div>
       )}
