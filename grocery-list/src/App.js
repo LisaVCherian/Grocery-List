@@ -48,7 +48,7 @@ function App() {
   const removeItem = (id) => {
     const newList = list.filter((item) => item.id !== id);
     setList(newList);
-    showAlert(true, 'Item removed successfully', 'danger')
+    showAlert(true, 'Item removed', 'danger')
   }
 
   const editItem = (id) => {
