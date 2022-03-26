@@ -59,11 +59,16 @@ function App() {
     setName(x.title);
   }
 
-  const quant = (id) => {
+  const quantInc = (id) => {
     let x = list.find((item) => item.id === id);
-    setEditing(true);
-    setEditID(id);
     setQuantity(x.quanty += 1);
+  }
+
+  const quantDec = (id) => {
+    let x = list.find((item) => item.id === id);
+    if (x.quanty > 0)
+      x.quanty -= 1;
+    setQuantity(x.quanty);
   }
 
   return (
@@ -86,7 +91,7 @@ function App() {
 
       {list.length > 0 && (
         <div className="grocery-container">
-          <List items={list} removeItem={removeItem} editItem={editItem} quant={quant} />
+          <List items={list} removeItem={removeItem} editItem={editItem} quantInc={quantInc} quantDec={quantDec} />
           <button className="clear-btn" onClick={clearList} >Clear Items</button>
         </div>
       )}
