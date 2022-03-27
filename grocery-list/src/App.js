@@ -2,19 +2,19 @@ import React, { useState, useEffect } from "react";
 import Alert from './Alert';
 import List from './List';
 
-const getLocalStorage = () => {
-  let list = localStorage.getItem('list');
-  if (list) {
-    return (list = JSON.parse(localStorage.getItem('list')));
-  } else {
-    return [];
-  }
-};
+// const getLocalStorage = () => {
+//   let list = localStorage.getItem('list');
+//   if (list) {
+//     return (list = JSON.parse(localStorage.getItem('list')));
+//   } else {
+//     return [];
+//   }
+// };
 
 function App() {
 
   const [name, setName] = useState('');
-  const [list, setList] = useState(getLocalStorage());
+  const [list, setList] = useState([]);
   const [editing, setEditing] = useState(false);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({ show: false, msg: '', type: '' });
@@ -36,13 +36,17 @@ function App() {
       setEditID(null);
       setEditing(false);
       setName('');
+      setQuantity(1);
       showAlert(true, 'Item updated', 'success');
+
     }
     else {
-      const newItem = { id: new Date().getTime().toString(), title: name, quanty: quantity }
+      const newItem = { id: new Date().getTime().toString(), title: name, quanty: 1 }
+      console.log(newItem);
       setList([...list, newItem]);
       showAlert(true, 'Item added to the list', 'success')
       setName('');
+      setQuantity(1);
     }
   }
 
@@ -80,9 +84,9 @@ function App() {
     setQuantity(x.quanty);
   }
 
-  useEffect(() => {
-    localStorage.setItem('list', JSON.stringify(list));
-  }, [list]);
+  // useEffect(() => {
+  //   localStorage.setItem('list', JSON.stringify(list));
+  // }, [list]);
 
   return (
     <section className="section-center">
