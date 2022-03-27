@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Alert from './Alert';
 import List from './List';
+
+const getLocalStorage = () => {
+  let list = localStorage.getItem('list');
+  if (list) {
+    return (list = JSON.parse(localStorage.getItem('list')));
+  } else {
+    return [];
+  }
+};
 
 function App() {
 
   const [name, setName] = useState('');
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(getLocalStorage());
   const [editing, setEditing] = useState(false);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({ show: false, msg: '', type: '' });
@@ -19,7 +28,7 @@ function App() {
     else if (name && editing) {
       setList(list.map((item) => {
         if (item.id === editID)
-          return { ...item, title: name }
+          return { ...item, title: name, quanty: quantity }
 
         return item;
       })
@@ -70,6 +79,10 @@ function App() {
       x.quanty -= 1;
     setQuantity(x.quanty);
   }
+
+  useEffect(() => {
+    localStorage.setItem('list', JSON.stringify(list));
+  }, [list]);
 
   return (
     <section className="section-center">

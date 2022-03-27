@@ -9,7 +9,7 @@ const List = ({ items, removeItem, editItem, quantInc, quantDec }) => {
                 return (
                     <article className='grocery-item' key={id}>
                         <p className='title'>{title}</p>
-                        <p className='title'>{quanty}</p>
+                        <p className='quanty'>{quanty}</p>
 
                         <div className='btn-container'>
                             <button type='button' className='inc-btn' onClick={() => quantInc(id)}><FaAngleUp /></button>

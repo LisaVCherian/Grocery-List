@@ -253,9 +253,15 @@ main {
   letter-spacing: 2px;
   transition: var(--transition);
 }
+.quanty {
+  margin-bottom: 0;
+  color: var(--clr-primary-5);
+  letter-spacing: 2px;
+  font-weight: 600;
+  transition: var(--transition);
+}
 .edit-btn,
-.delete-btn,
-.inc-btn {
+.delete-btn {
   background: transparent;
   border-color: transparent;
   cursor: pointer;
@@ -264,6 +270,12 @@ main {
   transition: var(--transition);
 }
 .inc-btn {
+  background: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-right: 1.5rem;
+  transition: var(--transition);
   color: var(--clr-primary-5);
 }
 .edit-btn {
